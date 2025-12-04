@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 204 17% 95%; /* #ecf0f1 Light Gray */
+    --foreground: 210 29% 24%; /* #2c3e50 Dark Slate Blue/Gray */
+    --card: 204 17% 98%;
+    --card-foreground: 210 29% 24%;
+    --popover: 204 17% 98%;
+    --popover-foreground: 210 29% 24%;
+    --primary: 207 70% 53%; /* #3498db Deep Sky Blue */
+    --primary-foreground: 210 40% 98%; /* Light color for text on primary */
+    --secondary: 210 40% 92%;
+    --secondary-foreground: 210 29% 24%;
+    --muted: 210 40% 90%;
+    --muted-foreground: 210 25% 55%; /* Adjusted for better contrast on muted */
+    --accent: 28 80% 52%; /* #e67e22 Vivid Orange */
+    --accent-foreground: 210 40% 98%; /* Light color for text on accent */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 20% 85%;
+    --input: 210 20% 88%;
+    --ring: 207 70% 53%; /* Primary color for ring */
+    --chart-1: 207 70% 53%; /* Primary */
+    --chart-2: 28 80% 52%; /* Accent */
+    --chart-3: 120 60% 45%; /* A green */
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+
+    /* Sidebar specific variables */
+    --sidebar-background: 204 17% 92%; /* Slightly darker than main background */
+    --sidebar-foreground: 210 29% 24%;
+    --sidebar-primary: 207 70% 53%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 28 80% 52%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 210 20% 80%;
+    --sidebar-ring: 207 70% 53%;
+  }
+
+  .dark {
+    --background: 210 29% 10%; /* Darker background for dark mode */
+    --foreground: 210 40% 98%;
+    --card: 210 29% 12%;
+    --card-foreground: 210 40% 98%;
+    --popover: 210 29% 12%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 207 70% 53%; /* Keep primary color */
+    --primary-foreground: 210 29% 10%; /* Dark text on primary for dark mode */
+    --secondary: 210 30% 20%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 30% 20%;
+    --muted-foreground: 210 30% 65%;
+    --accent: 28 80% 52%; /* Keep accent color */
+    --accent-foreground: 210 29% 10%; /* Dark text on accent for dark mode */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 30% 25%;
+    --input: 210 30% 25%;
+    --ring: 207 70% 53%; /* Primary color for ring */
+    --chart-1: 207 70% 53%;
+    --chart-2: 28 80% 52%;
+    --chart-3: 120 60% 65%;
+    --chart-4: 43 74% 76%;
+    --chart-5: 27 87% 77%;
+
+    /* Sidebar specific variables for dark mode */
+    --sidebar-background: 210 29% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 207 70% 53%;
+    --sidebar-primary-foreground: 210 29% 10%;
+    --sidebar-accent: 28 80% 52%;
+    --sidebar-accent-foreground: 210 29% 10%;
+    --sidebar-border: 210 30% 22%;
+    --sidebar-ring: 207 70% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* font-family rule removed, Tailwind will handle it via font-sans class and theme config */
+  }
+}
