@@ -37,6 +37,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
+import React from 'react';
 
 const severityDisplayConfig: Record<AccidentSeverity, { text: string; className: string }> = {
   Fatal: { text: 'Fatal', className: 'bg-red-700 hover:bg-red-700/90 text-white' },
@@ -155,28 +156,30 @@ export default function HistoricalAnalysisPage() {
                         </TableHeader>
                         <TableBody>
                         {historicalAccidents.map((accident: HistoricalAccident) => (
-                            <AccordionItem value={accident.id} key={accident.id}>
-                            <>
-                                <TableRow className="border-b-0">
-                                <TableCell className="font-medium align-top py-3">{format(new Date(accident.date), 'MMM dd, yyyy', { locale: es })}</TableCell>
-                                <TableCell className="align-top py-3">{accident.areaName}</TableCell>
-                                <TableCell className="text-xs text-muted-foreground max-w-md align-top py-3">{accident.description}</TableCell>
-                                <TableCell className="align-top py-3">
-                                    <Badge
-                                    className={cn(
-                                        "text-xs px-2 py-1 font-semibold",
-                                        severityDisplayConfig[accident.severity].className
-                                    )}
-                                    >
-                                    {severityDisplayConfig[accident.severity].text}
-                                    </Badge>
-                                </TableCell>
-                                <TableCell className="text-center align-top py-3">
-                                    <AccordionTrigger className="p-2 hover:bg-primary/20 hover:text-primary rounded-md [&[data-state=open]>svg]:text-primary"/>
-                                </TableCell>
+                            <React.Fragment key={accident.id}>
+                                <TableRow>
+                                    <TableCell className="font-medium align-top py-3">{format(new Date(accident.date), 'MMM dd, yyyy', { locale: es })}</TableCell>
+                                    <TableCell className="align-top py-3">{accident.areaName}</TableCell>
+                                    <TableCell className="text-xs text-muted-foreground max-w-md align-top py-3">{accident.description}</TableCell>
+                                    <TableCell className="align-top py-3">
+                                        <Badge
+                                        className={cn(
+                                            "text-xs px-2 py-1 font-semibold",
+                                            severityDisplayConfig[accident.severity].className
+                                        )}
+                                        >
+                                        {severityDisplayConfig[accident.severity].text}
+                                        </Badge>
+                                    </TableCell>
+                                    <TableCell className="text-center align-top py-3">
+                                      <AccordionItem value={accident.id} className="border-b-0">
+                                        <AccordionTrigger className="p-2 hover:bg-primary/20 hover:text-primary rounded-md [&[data-state=open]>svg]:text-primary"/>
+                                      </AccordionItem>
+                                    </TableCell>
                                 </TableRow>
-                                <TableRow className="bg-muted/30 hover:bg-muted/40">
+                                <TableRow>
                                     <TableCell colSpan={5} className="p-0">
+                                      <AccordionItem value={accident.id}>
                                         <AccordionContent className="p-4 space-y-3 text-sm">
                                             <div>
                                                 <h4 className="font-semibold text-foreground/90">Factores Contribuyentes:</h4>
@@ -199,10 +202,10 @@ export default function HistoricalAnalysisPage() {
                                                 <p><span className="font-semibold">Equipamiento Dañado:</span> {accident.equipmentDamaged.join(', ')}</p>
                                             }
                                         </AccordionContent>
+                                      </AccordionItem>
                                     </TableCell>
                                 </TableRow>
-                            </>
-                            </AccordionItem>
+                            </React.Fragment>
                         ))}
                         {historicalAccidents.length === 0 && (
                             <TableRow>
@@ -228,4 +231,3 @@ export default function HistoricalAnalysisPage() {
     </div>
   );
 }
-
